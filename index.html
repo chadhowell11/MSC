@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mandeville Sports Complex — Website Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#EE3B33; --red-d:#C9241D; --yellow:#FFF200; --sun:#FFD21F; --ink:#231F20;
+  --pool:#14A3DB; --pool-d:#0B6FA4; --grass:#2FB36B; --grape:#7B4FD6;
+  --cream:#FFF8EA; --paper:#FFFFFF; --muted:#6B6563; --line:#EFE6D6;
+  --r:22px; --shadow:0 10px 30px rgba(35,31,32,.12); --pop:0 6px 0 var(--ink);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Nunito,system-ui,sans-serif;color:var(--ink);background:#2a2526;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,.display{font-family:"Lilita One",Nunito,sans-serif;font-weight:400;letter-spacing:.3px;line-height:1.02}
+
+/* ---------- app shell + mobile preview ---------- */
+#app{container-type:inline-size;container-name:site;background:var(--cream);min-height:100vh;margin:0 auto;position:relative;overflow-x:hidden;transition:max-width .4s ease}
+body.phone{padding:28px 0 80px}
+body.phone #app{max-width:400px;min-height:0;height:820px;overflow-y:auto;border-radius:44px;border:12px solid #111;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+body.phone #app::-webkit-scrollbar{display:none}
+
+/* concept toolbar */
+.concept{position:fixed;z-index:200;left:16px;bottom:16px;display:flex;gap:8px;align-items:center;background:var(--ink);color:#fff;border-radius:999px;padding:6px 6px 6px 16px;font-size:13px;font-weight:800;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.concept span{opacity:.8;font-weight:700}
+.concept button{background:var(--yellow);color:var(--ink);border-radius:999px;padding:7px 12px;font-weight:900}
+.concept button.on{background:var(--red);color:#fff}
+
+/* ---------- header ---------- */
+.topbar{background:var(--ink);color:#fff;font-size:13px;font-weight:700}
+.topbar .wrap{display:flex;gap:18px;align-items:center;justify-content:space-between;padding:8px 24px}
+.topbar .left{display:flex;gap:18px;align-items:center}
+.status{display:inline-flex;gap:7px;align-items:center}
+.dot{width:9px;height:9px;border-radius:50%;background:#3ee07a;box-shadow:0 0 0 0 rgba(62,224,122,.7);animation:pulse 1.8s infinite}
+.dot.closed{background:#ff6b63;animation:none}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(62,224,122,0)}100%{box-shadow:0 0 0 0 rgba(62,224,122,0)}}
+.topbar a{opacity:.9}.topbar a:hover{opacity:1;color:var(--yellow)}
+header.main{position:sticky;top:0;z-index:50;background:rgba(255,248,234,.92);backdrop-filter:blur(10px);border-bottom:2px solid var(--line)}
+header.main .wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand img{height:58px;width:auto;filter:drop-shadow(0 3px 0 rgba(35,31,32,.15));transition:transform .3s}
+.brand:hover img{transform:rotate(-6deg) scale(1.05)}
+nav.links{display:flex;gap:4px}
+nav.links button{padding:10px 14px;border-radius:999px;font-weight:800;font-size:15px;transition:background .2s}
+nav.links button:hover{background:#fff}
+nav.links button.active{background:var(--ink);color:#fff}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;font-weight:900;font-size:16px;border:3px solid var(--ink);box-shadow:0 4px 0 var(--ink);transition:transform .15s, box-shadow .15s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--ink)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+.btn.red{background:var(--red);color:#fff}
+.btn.yellow{background:var(--yellow)}
+.btn.white{background:#fff}
+.btn.pool{background:var(--pool);color:#fff}
+.burger{display:none;width:46px;height:46px;border-radius:14px;background:var(--ink);color:#fff;font-size:22px}
+.mobilenav{display:none}
+
+/* ---------- generic ---------- */
+.wrap{max-width:1240px;margin:0 auto}
+section{padding:84px 24px;position:relative}
+.eyebrow{display:inline-block;font-weight:900;font-size:13px;letter-spacing:1.6px;text-transform:uppercase;background:var(--yellow);padding:6px 12px;border-radius:999px;border:2px solid var(--ink);transform:rotate(-2deg)}
+.h2{font-size:clamp(36px,5cqi,58px);margin:14px 0 12px}
+.lede{font-size:19px;color:#4a4443;max-width:640px;line-height:1.5;font-weight:600}
+.center{text-align:center}.center .lede{margin:0 auto}
+.card{background:var(--paper);border-radius:var(--r);border:3px solid var(--ink);box-shadow:var(--pop)}
+.page{display:none;animation:fadeUp .45s ease}
+.page.show{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease, transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+.wave{display:block;width:100%;height:60px}
+
+/* ---------- hero ---------- */
+.hero{padding:56px 24px 40px;background:radial-gradient(circle at 85% 10%, #fff3a8 0, transparent 40%), var(--cream);overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(52px,7.4cqi,96px)}
+.hero h1 .r{color:var(--red)}
+.hero h1 .b{color:var(--pool)}
+.hero h1 .g{color:var(--grass)}
+.hero h1 .hl{background:linear-gradient(transparent 62%, var(--yellow) 62%);padding:0 6px}
+.hero p.lede{margin:22px 0 28px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.trust{display:flex;gap:22px;align-items:center;margin-top:34px;flex-wrap:wrap}
+.trust .stat b{display:block;font-family:"Lilita One";font-size:30px;color:var(--red)}
+.trust .stat{font-weight:800;font-size:13px;color:var(--muted);line-height:1.2}
+.collage{position:relative;height:560px}
+.collage .ph{position:absolute;border:6px solid #fff;border-radius:26px;overflow:hidden;box-shadow:var(--shadow);transition:transform .5s cubic-bezier(.2,.9,.3,1.3)}
+.collage .ph img{width:100%;height:100%;object-fit:cover}
+.collage .p1{width:62%;height:62%;left:0;top:6%;transform:rotate(-4deg)}
+.collage .p2{width:48%;height:44%;right:0;top:0;transform:rotate(5deg)}
+.collage .p3{width:50%;height:46%;right:4%;bottom:0;transform:rotate(-3deg)}
+.collage .p4{width:40%;height:34%;left:8%;bottom:2%;transform:rotate(4deg)}
+.collage .ph:hover{transform:rotate(0) scale(1.04);z-index:5}
+.badge{position:absolute;z-index:6;width:150px;left:44%;top:40%;animation:bob 4s ease-in-out infinite;filter:drop-shadow(0 10px 18px rgba(0,0,0,.25))}
+@keyframes bob{50%{transform:translateY(-10px) rotate(6deg)}}
+.blob{position:absolute;border-radius:50%;z-index:0}
+.sticker{position:absolute;z-index:6;background:var(--red);color:#fff;font-family:"Lilita One";font-size:20px;padding:10px 16px;border-radius:16px;border:3px solid var(--ink);box-shadow:0 4px 0 var(--ink);transform:rotate(-8deg)}
+
+/* marquee */
+.marquee{background:var(--red);color:#fff;border-block:4px solid var(--ink);overflow:hidden;white-space:nowrap;padding:14px 0}
+.marquee .track{display:inline-flex;gap:38px;animation:scroll 32s linear infinite;font-family:"Lilita One";font-size:26px}
+.marquee .track span:nth-child(odd){color:var(--yellow)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ---------- finder ---------- */
+.finder{background:#fff}
+.who{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:34px 0 14px}
+.who button{display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 20px;min-width:128px;border-radius:20px;border:3px solid var(--ink);background:var(--cream);font-weight:900;transition:all .2s}
+.who button .em{font-size:34px;transition:transform .3s}
+.who button small{font-weight:700;color:var(--muted);font-size:12px}
+.who button:hover .em{transform:scale(1.2) rotate(-8deg)}
+.who button.on{background:var(--yellow);box-shadow:0 5px 0 var(--ink);transform:translateY(-3px)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:34px}
+.chip{padding:8px 15px;border-radius:999px;border:2px solid var(--ink);font-weight:800;font-size:14px;background:#fff}
+.chip.on{background:var(--ink);color:#fff}
+.grid-prog{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.prog{overflow:hidden;display:flex;flex-direction:column;transition:transform .25s}
+.prog:hover{transform:translateY(-6px) rotate(-.5deg)}
+.prog .img{height:200px;position:relative;overflow:hidden;border-bottom:3px solid var(--ink)}
+.prog .img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.prog:hover .img img{transform:scale(1.08)}
+.prog .tag{position:absolute;top:12px;left:12px;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:4px 10px;font-weight:900;font-size:12px}
+.prog .body{padding:20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.prog h3{font-size:26px}
+.prog p{color:#4a4443;font-weight:600;line-height:1.45;font-size:15px}
+.prog .meta{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px}
+.prog .price{font-weight:900;color:var(--red)}
+.prog .go{font-weight:900;font-size:14px;display:inline-flex;gap:6px;align-items:center}
+.prog .go:hover{color:var(--red)}
+.empty{text-align:center;padding:30px;font-weight:800;color:var(--muted);grid-column:1/-1}
+
+/* ---------- split feature ---------- */
+.split .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.split .pic{position:relative}
+.split .pic img{border-radius:30px;border:4px solid var(--ink);box-shadow:12px 12px 0 var(--red);width:100%;height:460px;object-fit:cover}
+.checks{list-style:none;display:grid;gap:12px;margin:22px 0 28px}
+.checks li{display:flex;gap:12px;font-weight:700;font-size:17px;align-items:flex-start}
+.checks li:before{content:"✓";flex:none;width:28px;height:28px;border-radius:50%;background:var(--grass);color:#fff;display:grid;place-items:center;font-weight:900;font-size:15px;border:2px solid var(--ink)}
+
+/* olympians */
+.olympians{background:var(--ink);color:#fff;overflow:hidden}
+.olympians .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.olympians .lede{color:#d9d3d0}
+.olympians .pic img{border-radius:30px;border:4px solid var(--yellow);height:480px;width:100%;object-fit:cover;object-position:top}
+.rings{display:flex;gap:6px;margin:18px 0}
+.rings i{width:26px;height:26px;border-radius:50%;border:4px solid}
+.coachlist{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+.coach{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:14px}
+.coach b{display:block;font-size:16px;color:var(--yellow)}
+.coach span{font-size:13.5px;color:#cfc8c5;font-weight:600;line-height:1.4}
+
+/* testimonials */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px}
+.quote{padding:28px;position:relative}
+.quote:before{content:"“";font-family:"Lilita One";font-size:90px;line-height:.6;color:var(--red);display:block;height:40px}
+.quote p{font-weight:700;font-size:17px;line-height:1.5}
+.quote .who2{margin-top:16px;display:flex;gap:10px;align-items:center;font-weight:900}
+.quote .who2 i{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:#fff;font-style:normal;border:2px solid var(--ink)}
+.quote .who2 small{display:block;font-weight:700;color:var(--muted)}
+.stars{color:#f5a400;letter-spacing:2px;margin-bottom:6px}
+
+/* gallery */
+.gal-filters{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:28px 0}
+.gallery{columns:4 220px;column-gap:14px}
+.gallery figure{break-inside:avoid;margin-bottom:14px;border-radius:18px;overflow:hidden;border:3px solid var(--ink);cursor:zoom-in;position:relative;background:#ddd}
+.gallery img{width:100%;transition:transform .5s}
+.gallery figure:hover img{transform:scale(1.06)}
+.lightbox{position:fixed;inset:0;z-index:300;background:rgba(20,17,18,.92);display:none;align-items:center;justify-content:center;padding:30px}
+.lightbox.on{display:flex}
+.lightbox img{max-height:86vh;max-width:90vw;border-radius:18px;border:4px solid #fff}
+.lightbox button{position:absolute;color:#fff;font-size:40px;width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.12)}
+.lb-x{top:20px;right:20px}.lb-p{left:20px}.lb-n{right:20px}
+
+/* hours + visit */
+.visit{background:var(--pool);color:#fff}
+.visit .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:30px}
+.hours{background:#fff;color:var(--ink);padding:26px}
+.hours h3{font-size:28px;margin-bottom:6px}
+.htabs{display:flex;gap:6px;margin:14px 0}
+.htabs button{padding:8px 12px;border-radius:999px;border:2px solid var(--ink);font-weight:800;font-size:13px}
+.htabs button.on{background:var(--ink);color:#fff}
+.hrow{display:flex;justify-content:space-between;padding:11px 12px;border-radius:12px;font-weight:800}
+.hrow:nth-child(odd){background:var(--cream)}
+.hrow.today{background:var(--yellow)!important;border:2px solid var(--ink)}
+.hnote{font-size:13px;color:var(--muted);font-weight:700;margin-top:10px}
+.mapcard{border-radius:var(--r);overflow:hidden;border:3px solid var(--ink);background:#fff;color:var(--ink);display:flex;flex-direction:column}
+.mapcard .map{height:250px;background:#cfe9d8;position:relative;overflow:hidden}
+.mapcard .info{padding:22px;display:grid;gap:10px;font-weight:800}
+
+/* footer */
+footer{background:var(--ink);color:#fff;padding:60px 24px 110px}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+footer h4{font-family:"Lilita One";font-weight:400;font-size:20px;color:var(--yellow);margin-bottom:12px}
+footer a{display:block;color:#d9d3d0;font-weight:700;padding:4px 0;cursor:pointer}
+footer a:hover{color:#fff}
+.news{display:flex;margin-top:14px;background:#fff;border-radius:999px;padding:5px;border:3px solid var(--yellow)}
+.news input{flex:1;border:0;outline:0;padding:0 14px;font:inherit;font-weight:700;min-width:0;border-radius:999px}
+.news button{background:var(--red);color:#fff;border-radius:999px;padding:10px 16px;font-weight:900}
+.social{display:flex;gap:10px;margin-top:16px}
+.social span{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;font-weight:900}
+
+/* ---------- sub-page hero ---------- */
+.phero{padding:64px 24px 90px;color:#fff;position:relative;overflow:hidden}
+.phero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;position:relative;z-index:2}
+.phero h1{font-size:clamp(46px,6.5cqi,84px)}
+.phero .lede{color:rgba(255,255,255,.92)}
+.phero .eyebrow{color:var(--ink)}
+.phero img.hp{border-radius:30px;border:5px solid #fff;transform:rotate(3deg);height:380px;width:100%;object-fit:cover;box-shadow:0 20px 40px rgba(0,0,0,.25)}
+.phero .crumbs{font-weight:800;font-size:14px;opacity:.85;margin-bottom:14px}
+.phero .crumbs button{text-decoration:underline}
+.bg-red{background:var(--red)} .bg-pool{background:var(--pool)} .bg-grape{background:var(--grape)} .bg-grass{background:var(--grass)} .bg-ink{background:var(--ink)}
+.phero:after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:70px;background:var(--cream);clip-path:path('M0,40 C200,0 400,70 640,35 C880,0 1100,60 1400,30 L1400,80 L0,80Z');}
+.confetti{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.35;background-image:radial-gradient(var(--yellow) 3px,transparent 4px),radial-gradient(#fff 2px,transparent 3px);background-size:70px 70px,45px 45px;background-position:0 0,20px 30px}
+
+/* party builder */
+.builder{display:grid;grid-template-columns:1.35fr .9fr;gap:26px;align-items:start}
+.step{padding:24px;margin-bottom:18px}
+.step h3{font-size:24px;display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.step h3 i{font-style:normal;width:34px;height:34px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-size:18px;border:2px solid var(--ink)}
+.zones{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.zone{border:3px solid var(--ink);border-radius:18px;overflow:hidden;text-align:left;background:#fff;transition:transform .2s}
+.zone:hover{transform:translateY(-3px)}
+.zone.on{outline:5px solid var(--yellow);box-shadow:0 5px 0 var(--ink)}
+.zone img{height:110px;width:100%;object-fit:cover;border-bottom:3px solid var(--ink)}
+.zone div{padding:12px}
+.zone b{font-family:"Lilita One";font-weight:400;font-size:20px;display:block}
+.zone small{font-weight:700;color:var(--muted);font-size:13px;line-height:1.35;display:block}
+.zone .age{display:inline-block;margin-top:6px;background:var(--cream);border-radius:999px;padding:2px 8px;font-size:12px;font-weight:900;color:var(--ink)}
+.range{display:flex;align-items:center;gap:16px}
+.range input{flex:1;accent-color:var(--red);height:8px}
+.range output{font-family:"Lilita One";font-size:40px;color:var(--red);min-width:60px;text-align:right}
+.addons{display:grid;gap:10px}
+.addon{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:14px;background:var(--cream);font-weight:800}
+.addon small{display:block;color:var(--muted);font-weight:700}
+.stepper{display:flex;align-items:center;gap:8px}
+.stepper button{width:34px;height:34px;border-radius:50%;border:2px solid var(--ink);background:#fff;font-weight:900;font-size:18px}
+.stepper span{min-width:22px;text-align:center;font-weight:900}
+.daypick{display:flex;gap:8px;flex-wrap:wrap}
+.daypick button{padding:10px 14px;border-radius:14px;border:2px solid var(--ink);font-weight:800;background:#fff}
+.daypick button.on{background:var(--ink);color:#fff}
+.receipt{position:sticky;top:100px;padding:26px;background:var(--yellow)}
+.receipt h3{font-size:30px}
+.receipt .line{display:flex;justify-content:space-between;padding:8px 0;border-bottom:2px dashed rgba(35,31,32,.25);font-weight:800}
+.receipt .total{display:flex;justify-content:space-between;align-items:baseline;margin:16px 0 4px}
+.receipt .total b{font-family:"Lilita One";font-size:48px;font-weight:400}
+.receipt .dep{font-weight:800;font-size:14px;margin-bottom:18px}
+.incl{margin-top:22px;font-size:14px;font-weight:700}
+.incl li{margin:5px 0 5px 18px}
+.rules{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.rules span{background:#fff;border:2px solid var(--ink);border-radius:999px;padding:4px 10px;font-weight:800;font-size:12.5px;text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px}
+
+/* camps */
+.camptabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:24px 0 34px}
+.camptabs button{padding:12px 20px;border-radius:999px;border:3px solid var(--ink);font-weight:900;background:#fff;font-size:16px}
+.camptabs button.on{background:var(--red);color:#fff;box-shadow:0 4px 0 var(--ink)}
+.calgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.cday{border:3px solid var(--ink);border-radius:16px;padding:12px;text-align:left;background:#fff;transition:all .15s;position:relative}
+.cday .mo{font-weight:900;font-size:12px;color:var(--red);text-transform:uppercase;letter-spacing:1px}
+.cday .d{font-family:"Lilita One";font-size:32px;line-height:1}
+.cday .w{font-weight:800;font-size:13px}
+.cday .n{font-weight:700;font-size:12px;color:var(--muted);margin-top:4px}
+.cday.on{background:var(--grass);color:#fff;box-shadow:0 4px 0 var(--ink)}
+.cday.on .mo,.cday.on .n{color:#fff}
+.cday.on:after{content:"✓";position:absolute;top:8px;right:10px;font-weight:900;font-size:20px}
+.opts{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.opt{display:flex;gap:8px;align-items:center;padding:10px 14px;border-radius:14px;border:2px solid var(--ink);background:#fff;font-weight:800;font-size:14px}
+.opt input{accent-color:var(--red);width:18px;height:18px}
+.campbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 22px;background:var(--ink);color:#fff;border-radius:20px;margin-top:18px;flex-wrap:wrap}
+.campbar b{font-family:"Lilita One";font-size:34px;font-weight:400;color:var(--yellow)}
+.feats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
+.feat{padding:20px;text-align:center}
+.feat .em{font-size:40px}
+.feat b{display:block;font-family:"Lilita One";font-size:20px;font-weight:400;margin:6px 0 4px}
+.feat span{font-size:14px;font-weight:700;color:#4a4443}
+.schools{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.schools .card{padding:20px}
+.schools h4{font-family:"Lilita One";font-weight:400;font-size:20px;margin-bottom:8px}
+.schools li{list-style:none;padding:7px 0;font-weight:800;border-bottom:2px dashed var(--line)}
+.packlist{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.pack{display:flex;gap:10px;align-items:center;padding:12px;border-radius:14px;background:#fff;border:2px solid var(--ink);font-weight:800;font-size:14px;cursor:pointer;user-select:none}
+.pack .bx{width:24px;height:24px;border-radius:7px;border:2px solid var(--ink);flex:none;display:grid;place-items:center}
+.pack.on{background:#e6f7ec}
+.pack.on .bx{background:var(--grass);color:#fff}
+.pack.on .bx:after{content:"✓";font-weight:900}
+.progressbar{height:14px;background:#fff;border:2px solid var(--ink);border-radius:999px;overflow:hidden;margin-top:12px}
+.progressbar i{display:block;height:100%;background:var(--grass);width:0;transition:width .3s}
+
+/* swim */
+.levels{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
+.level{padding:20px;text-align:center;position:relative}
+.level .fish{font-size:40px}
+.level b{display:block;font-family:"Lilita One";font-weight:400;font-size:22px;margin-top:6px}
+.level span{font-size:14px;font-weight:700;color:#4a4443}
+.teamrow{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:30px}
+.team{padding:0;overflow:hidden}
+.team img{height:220px;width:100%;object-fit:cover;border-bottom:3px solid var(--ink)}
+.team .body{padding:22px}
+.team h3{font-size:26px;margin-bottom:6px}
+.ptable{width:100%;border-collapse:collapse;margin-top:12px;font-weight:800;font-size:14px}
+.ptable td{padding:8px 6px;border-bottom:2px dashed var(--line)}
+.ptable td:last-child{text-align:right;color:var(--pool-d)}
+
+/* fitness schedule */
+.sched-days{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0}
+.sched-days button{padding:10px 16px;border-radius:14px;border:3px solid var(--ink);font-weight:900;background:#fff;position:relative}
+.sched-days button.on{background:var(--ink);color:#fff}
+.sched-days button .t{position:absolute;top:-10px;right:-8px;background:var(--red);color:#fff;font-size:10px;padding:2px 6px;border-radius:999px;border:2px solid var(--ink)}
+.classes{display:grid;gap:12px}
+.cls{display:grid;grid-template-columns:110px 1fr auto;align-items:center;gap:16px;padding:16px 20px}
+.cls .time{font-family:"Lilita One";font-size:26px;color:var(--red)}
+.cls b{font-size:19px;font-family:"Lilita One";font-weight:400}
+.cls small{display:block;font-weight:700;color:var(--muted)}
+.pill{padding:6px 12px;border-radius:999px;font-weight:900;font-size:12px;border:2px solid var(--ink)}
+.p-senior{background:#e8defc}.p-cardio{background:#ffe1df}.p-strength{background:#fff7a6}.p-dance{background:#d9f3ff}.p-mind{background:#dff5e7}
+.mem{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+.memc{padding:24px;position:relative}
+.memc.hot{background:var(--yellow)}
+.memc .flag{position:absolute;top:-14px;right:18px;background:var(--red);color:#fff;padding:5px 12px;border-radius:999px;border:2px solid var(--ink);font-weight:900;font-size:12px}
+.memc h3{font-size:26px}
+.memc .who3{font-weight:800;color:var(--muted);margin:4px 0 14px}
+.memc ul{list-style:none;display:grid;gap:8px;font-weight:700;font-size:15px}
+.memc li:before{content:"★ ";color:var(--red)}
+.amen{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:26px}
+.amen div{background:#fff;border:2px solid var(--ink);border-radius:16px;padding:14px 8px;text-align:center;font-weight:800;font-size:13px}
+.amen div span{display:block;font-size:28px;margin-bottom:4px}
+.partners{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.partners span{background:#fff;border:2px solid var(--ink);border-radius:12px;padding:8px 12px;font-weight:900;font-size:13px}
+
+/* forms hub */
+.formsgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}
+.fcard{padding:18px;display:flex;flex-direction:column;gap:6px}
+.fcard .em{font-size:30px}
+.fcard b{font-family:"Lilita One";font-weight:400;font-size:19px}
+.fcard small{font-weight:700;color:var(--muted)}
+.fcard button{margin-top:auto;align-self:flex-start;font-weight:900;color:var(--red);padding-top:8px}
+.soon{font-size:11px;font-weight:900;background:var(--cream);border:2px solid var(--ink);border-radius:999px;padding:2px 8px;align-self:flex-start}
+.modal{position:fixed;inset:0;background:rgba(20,17,18,.7);z-index:250;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.on{display:flex}
+.modal .card{max-width:560px;width:100%;padding:28px;max-height:90vh;overflow:auto}
+.modal h3{font-size:30px;margin-bottom:6px}
+.steps{display:flex;gap:6px;margin:14px 0 20px}
+.steps i{flex:1;height:8px;border-radius:999px;background:var(--line)}
+.steps i.on{background:var(--red)}
+.field{display:grid;gap:6px;margin-bottom:12px;font-weight:800;font-size:14px}
+.field input,.field select,.field textarea{padding:12px 14px;border-radius:12px;border:2px solid var(--ink);font:inherit;font-weight:700;background:var(--cream)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mfoot{display:flex;justify-content:space-between;margin-top:18px}
+.success{text-align:center;padding:20px 0}
+.success .em{font-size:70px;animation:bob 2s infinite}
+
+/* contact */
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+
+/* chat bubble */
+.helper{position:fixed;right:18px;bottom:18px;z-index:180}
+.helper .fab{width:64px;height:64px;border-radius:50%;background:var(--red);border:3px solid var(--ink);box-shadow:0 5px 0 var(--ink);font-size:30px;display:grid;place-items:center}
+.helper .panel{position:absolute;right:0;bottom:80px;width:320px;display:none;padding:0;overflow:hidden}
+.helper.open .panel{display:block;animation:fadeUp .3s}
+.helper .ph1{background:var(--ink);color:#fff;padding:14px 16px;font-weight:900;display:flex;gap:10px;align-items:center}
+.helper .ph1 img{width:38px;background:#fff;border-radius:50%;padding:3px}
+.helper .msgs{padding:14px;display:grid;gap:8px;max-height:280px;overflow:auto;background:var(--cream)}
+.bub{background:#fff;border:2px solid var(--ink);border-radius:16px 16px 16px 4px;padding:10px 12px;font-weight:700;font-size:14px;line-height:1.4}
+.bub.me{background:var(--yellow);border-radius:16px 16px 4px 16px;justify-self:end}
+.quick{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px 14px;background:var(--cream)}
+.quick button{border:2px solid var(--ink);border-radius:999px;padding:6px 10px;font-weight:800;font-size:12.5px;background:#fff}
+
+/* ---------- responsive (container queries => works in phone preview) ---------- */
+@container site (max-width: 1080px){
+  nav.links{display:none}
+  .burger{display:grid;place-items:center}
+  header.main .hide-sm{display:none}
+  .mobilenav.on{display:grid;gap:6px;padding:10px 24px 18px}
+  .mobilenav button{text-align:left;padding:14px 16px;border-radius:14px;font-weight:900;font-size:18px;background:#fff;border:2px solid var(--ink)}
+  .grid-prog{grid-template-columns:1fr 1fr}
+  .amen{grid-template-columns:repeat(3,1fr)}
+  .formsgrid{grid-template-columns:1fr 1fr}
+  .levels{grid-template-columns:1fr 1fr}
+  .feats{grid-template-columns:1fr 1fr}
+}
+@container site (max-width: 760px){
+  section{padding:60px 18px}
+  .topbar .hide-xs{display:none}
+  .topbar .wrap{padding:8px 16px}
+  header.main .wrap{padding:8px 16px}
+  .brand img{height:48px}
+  .hero{padding:30px 18px 30px}
+  .hero .wrap,.split .wrap,.olympians .wrap,.visit .wrap,.phero .wrap,.builder,.contact .wrap{grid-template-columns:1fr}
+  .collage{height:380px}
+  .badge{width:110px}
+  .grid-prog,.tgrid,.mem,.teamrow,.schools{grid-template-columns:1fr}
+  .packlist{grid-template-columns:1fr 1fr}
+  .zones{grid-template-columns:1fr 1fr}
+  .zone img{height:80px}
+  .split .pic img,.olympians .pic img{height:300px}
+  .phero{padding:40px 18px 80px}
+  .phero img.hp{height:240px}
+  .receipt{position:static}
+  footer .wrap{grid-template-columns:1fr 1fr}
+  .cls{grid-template-columns:80px 1fr;}
+  .cls .pill{grid-column:2;justify-self:start}
+  .cls .time{font-size:21px}
+  .coachlist{grid-template-columns:1fr}
+  .who button{min-width:0;flex:1 1 40%}
+  .gallery{columns:2 140px}
+  .amen{grid-template-columns:repeat(2,1fr)}
+  .formsgrid,.levels,.feats{grid-template-columns:1fr 1fr}
+  .frow{grid-template-columns:1fr}
+  .trust{gap:16px}
+  .helper .panel{width:290px}
+}
+@media (max-width:600px){ .concept span{display:none} }
+</style>
+</head>
+<body>
+
+<div class="concept" id="concept"><span>✏️ Website concept for Mandeville Sports Complex</span><button id="phoneBtn">📱 Mobile view</button></div>
+
+<div id="app">
+  <div class="topbar"><div class="wrap">
+    <div class="left">
+      <span class="status"><i class="dot" id="dot"></i><b id="openTxt">Open now</b></span>
+      <a href="tel:9857277277" class="hide-xs">📞 985-727-7277</a>
+      <a class="hide-xs">📍 23052 Hwy 1088, Mandeville</a>
+    </div>
+    <a data-go="visit">🏆 Best of St. Tammany 2026</a>
+  </div></div>
+
+  <header class="main">
+    <div class="wrap">
+      <a class="brand" data-go="home"><img src="https://mandevillesportscomplex.com/wp-content/uploads/2025/11/logo-mandeville-sports-complex.png" alt="Mandeville Sports Complex"></a>
+      <nav class="links" id="navlinks">
+        <button data-go="home">Home</button>
+        <button data-go="camps">Camps & Care</button>
+        <button data-go="parties">Parties</button>
+        <button data-go="swim">Swim</button>
+        <button data-go="gym">Gym & Cheer</button>
+        <button data-go="fitness">Fitness & Seniors</button>
+        <button data-go="visit">Plan a Visit</button>
+      </nav>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button class="btn red hide-sm" data-go="parties">🎉 Build a Party</button>
+        <button class="burger" id="burger">☰</button>
+      </div>
+    </div>
+    <div class="mobilenav" id="mobilenav">
+      <button data-go="home">🏠 Home</button>
+      <button data-go="camps">☀️ Camps & Care</button>
+      <button data-go="parties">🎉 Birthday Parties</button>
+      <button data-go="swim">🏊 Swim</button>
+      <button data-go="gym">🤸 Gymnastics & Cheer</button>
+      <button data-go="fitness">💪 Fitness & Seniors</button>
+      <button data-go="visit">📍 Plan a Visit & Forms</button>
+    </div>
+  </header>
+
+  <main id="pages"></main>
+
+  <footer>
+    <div class="wrap">
+      <div>
+        <img src="https://mandevillesportscomplex.com/wp-content/uploads/2025/11/logo-mandeville-sports-complex.png" alt="" style="height:80px;margin-bottom:14px">
+        <p style="color:#d9d3d0;font-weight:700;max-width:300px;line-height:1.5">Your family's home for sports, fun, and growth on the Northshore.</p>
+        <b style="display:block;margin-top:18px;color:#fff">Get camp dates & party openings first</b>
+        <form class="news" onsubmit="event.preventDefault();this.innerHTML='<span style=&quot;padding:10px 14px;font-weight:900;color:var(--ink)&quot;>🎉 You\'re on the list!</span>'"><input placeholder="Parent email" type="email" required><button>Join</button></form>
+        <div class="social"><span>f</span><span>◎</span><span>▶</span></div>
+      </div>
+      <div><h4>Kids</h4><a data-go="camps">Summer Camp</a><a data-go="camps" data-tab="holiday">Holiday Camp</a><a data-go="camps" data-tab="after">After School Care</a><a data-go="parties">Birthday Parties</a><a data-go="swim">Swim Lessons</a><a data-go="gym">Gymnastics & Cheer</a></div>
+      <div><h4>Adults</h4><a data-go="fitness">Fitness Center</a><a data-go="fitness">Class Schedule</a><a data-go="fitness">Memberships</a><a data-go="fitness">Senior Programs</a></div>
+      <div><h4>Visit</h4><a data-go="visit">Hours</a><a data-go="visit">Forms & Waivers</a><a data-go="visit">Contact</a><a href="tel:9857277277">985-727-7277</a><a>info@mandevillesportscomplex.com</a></div>
+    </div>
+    <div class="wrap" style="display:block;margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);color:#9b9391;font-weight:700;font-size:13px">© 2026 Mandeville Sports Complex · 23052 Highway 1088, Mandeville, LA 70448</div>
+  </footer>
+</div>
+
+<!-- lightbox -->
+<div class="lightbox" id="lb"><button class="lb-x" id="lbx">×</button><button class="lb-p" id="lbp">‹</button><img id="lbimg" alt=""><button class="lb-n" id="lbn">›</button></div>
+
+<!-- form modal -->
+<div class="modal" id="modal"><div class="card" id="modalCard"></div></div>
+
+<!-- helper bot -->
+<div class="helper" id="helper">
+  <div class="panel card">
+    <div class="ph1"><img src="https://mandevillesportscomplex.com/wp-content/uploads/2025/11/logo-mandeville-sports-complex.png" alt="">MSC Helper<span style="margin-left:auto;font-size:12px;opacity:.7">usually instant</span></div>
+    <div class="msgs" id="msgs"><div class="bub">Hi there! 👋 I can help with hours, parties, camps and more. What can I help you find?</div></div>
+    <div class="quick" id="quick"></div>
+  </div>
+  <button class="fab" id="fab">💬</button>
+</div>
+
+<script>
+const U='https://mandevillesportscomplex.com/wp-content/uploads/';
+const P={
+  splash:U+'2026/09/DSC_4994-scaled.jpg', icee:U+'2026/09/DSC_5075-scaled.jpg', inflat:U+'2026/09/DSC_5015-scaled.jpg', floaty:U+'2026/09/DSC_5023-scaled.jpg',
+  obstacle:U+'2026/09/DSC_5056-scaled.jpg', field:U+'2026/09/DSC_5116-scaled.jpg', bounceIn:U+'2026/09/DSC_5049-scaled.jpg', slide:U+'2026/09/DSC_4996-scaled.jpg',
+  dunk:U+'2026/09/DSC_5002-scaled.jpg', bounce2:U+'2026/09/DSC_5061-scaled.jpg', jump:U+'2026/09/DSC_5064-scaled.jpg', buddies:U+'2026/09/DSC_5083-scaled.jpg',
+  snow:U+'2026/09/DSC_5131-scaled.jpg', inflat2:U+'2026/09/DSC_5052-scaled.jpg', boy:U+'2026/09/DSC_5077-scaled.jpg', lunch:U+'2026/09/DSC_5139-scaled.jpg',
+  swimLesson:U+'2026/02/DSC_1918-scaled.jpg', pool:U+'2026/02/DSC_0192-scaled.jpg', pavilion:U+'2026/02/DSC_0094-scaled.jpg', courts:U+'2026/02/DSC_0095-scaled.jpg',
+  poolWide:U+'2026/02/DSC_2286-scaled.jpg', gym1:U+'2026/02/Picassa-140.jpg', gym2:U+'2026/02/DSC_4690.jpg', gymTeam:U+'2026/03/image11-scaled.jpeg',
+  gymComp:U+'2026/03/571752716_834307675805793_458752602539142094_n.jpg', gymMeet:U+'2026/03/image6-scaled.jpeg', egg:U+'2026/04/IMG_3019.jpg', bunny:U+'2026/04/IMG_3039.jpg',
+  bunny2:U+'2026/04/IMG_3045-Copy.jpg', coach:U+'2026/02/2016-6.jpg', goggles:U+'2022/04/Image5.jpg', weights:U+'2025/12/IMG_8518-scaled.jpeg',
+  swimTeam:U+'2026/02/IMG_4352.jpg', campGroup:U+'2026/02/img-mandeville-sports-complex-302.webp', partyTable:U+'2026/01/img-mandeville-sports-complex-109-1.webp',
+  jumpZone:U+'2026/01/img-mandeville-sports-complex-110-1.webp', cheer:U+'2026/01/img-mandeville-sports-complex-118-1.webp', holiday:U+'2026/01/img-mandeville-sports-complex-151-1.webp',
+  swimmer:U+'2026/01/img-mandeville-sports-complex-229-1.webp', swimGirls:U+'2026/02/img-mandeville-sports-complex-291.webp', homework:U+'2026/01/img-mandeville-sports-complex-94-1.webp',
+  crafts:U+'2026/01/img-mandeville-sports-complex-32-1.webp', cycle:U+'2026/01/img-mandeville-sports-complex-05-1.webp', fitness:U+'2026/01/img-mandeville-sports-complex-12-1.webp',
+  senior:U+'2026/03/Exercise-5.jpg', award:U+'2026/09/2026-Best-of-St.-Tammany-GOLD.png', beam:U+'2026/02/DSC_2191.jpg', olympians:U+'2026/03/Alex-and-Alena-e1774369535851-640x731.jpg'
+};
+const LOGO=U+'2025/11/logo-mandeville-sports-complex.png';
+const wave=(c)=>`<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60Z" fill="${c}"/></svg>`;
+
+/* ================= PAGES ================= */
+const pages={};
+
+pages.home=`
+<section class="hero">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Mandeville · Northshore</span>
+      <h1 style="margin-top:16px"><span class="r">Move.</span> <span class="b">Splash.</span><br><span class="g">Flip.</span> <span class="hl">Play!</span></h1>
+      <p class="lede">Camps, birthday parties, swim lessons, gymnastics, cheer and a full fitness center, all on one Northshore campus. Something for every age, from tiny tumblers to seniors.</p>
+      <div class="ctas">
+        <button class="btn red" data-go="parties">🎉 Plan a Birthday</button>
+        <button class="btn yellow" data-go="camps">☀️ Explore Camps</button>
+        <button class="btn white" data-scroll="finder">Find a Program →</button>
+      </div>
+      <div class="trust">
+        <div class="stat"><b>12+</b>programs<br>for kids</div>
+        <div class="stat"><b>4</b>party<br>zones</div>
+        <div class="stat"><b>25</b>years of<br>elite coaching</div>
+        <div class="stat"><b>7</b>days a<br>week</div>
+      </div>
+    </div>
+    <div class="collage reveal">
+      <div class="blob" style="width:280px;height:280px;background:var(--yellow);right:10%;top:22%"></div>
+      <div class="ph p1"><img src="${P.splash}" alt="Kids splashing at camp"></div>
+      <div class="ph p2"><img src="${P.floaty}" alt="Girls in the pool"></div>
+      <div class="ph p3"><img src="${P.gym1}" alt="Gymnastics"></div>
+      <div class="ph p4"><img src="${P.buddies}" alt="Camp buddies"></div>
+      <img class="badge" src="${P.award}" alt="Best of St. Tammany 2026 Winner">
+      <div class="sticker" style="left:-2%;top:0">Summer '27 apps open Jan!</div>
+    </div>
+  </div>
+</section>
+<div class="marquee"><div class="track">${Array(2).fill('<span>Swim Lessons</span><span>★</span><span>Summer Camp</span><span>★</span><span>Birthday Parties</span><span>★</span><span>Gymnastics</span><span>★</span><span>Crown Athletics Cheer</span><span>★</span><span>After School Care</span><span>★</span><span>Fitness Classes</span><span>★</span><span>Jump Zone</span><span>★</span><span>Diamond Mine</span><span>★</span>').join('')}</div></div>
+
+<section class="finder" id="finder">
+  <div class="wrap center">
+    <span class="eyebrow">Program finder</span>
+    <h2 class="h2">Who's coming to play?</h2>
+    <p class="lede">Tap an age and we'll show you everything that fits, from first swim lessons to Senior Chair Yoga.</p>
+    <div class="who" id="who">
+      <button data-age="tot"><span class="em">🍼</span>Little Ones<small>0–4</small></button>
+      <button data-age="kid" class="on"><span class="em">🧒</span>Kids<small>5–12</small></button>
+      <button data-age="teen"><span class="em">🛹</span>Teens<small>13–18</small></button>
+      <button data-age="adult"><span class="em">🏋️</span>Adults<small>18+</small></button>
+      <button data-age="senior"><span class="em">🌻</span>Seniors<small>65+</small></button>
+    </div>
+    <div class="chips" id="interest">
+      <button class="chip on" data-i="all">Everything</button><button class="chip" data-i="water">💦 Water</button><button class="chip" data-i="gym">🤸 Tumbling</button><button class="chip" data-i="camp">☀️ Camps & Care</button><button class="chip" data-i="party">🎂 Parties</button><button class="chip" data-i="fit">💪 Fitness</button>
+    </div>
+    <div class="grid-prog" id="progGrid" style="text-align:left"></div>
+  </div>
+</section>
+
+<section class="split">
+  <div class="wrap">
+    <div class="pic reveal"><img src="${P.jump}" alt="Jump Zone trampolines"><div class="sticker" style="right:-10px;bottom:30px;background:var(--pool)">Jump Zone 🦘</div></div>
+    <div class="reveal">
+      <span class="eyebrow">Birthday parties</span>
+      <h2 class="h2">The easiest birthday you'll ever throw.</h2>
+      <p class="lede">Pick a zone, pick a date. We handle the pizza, cake, balloons, hosts and cleanup. You get the photos.</p>
+      <ul class="checks"><li>Foam pit, rock wall, trampolines, pool or pavilion</li><li>Two party hosts and the birthday kid is free</li><li>See your price instantly with our party builder</li></ul>
+      <button class="btn red" data-go="parties">Build Your Party →</button>
+    </div>
+  </div>
+</section>
+
+<section class="olympians">
+  <div class="wrap">
+    <div class="pic reveal"><img src="${P.olympians}" alt="Head coaches Alex and Alena"></div>
+    <div class="reveal">
+      <span class="eyebrow" style="color:var(--ink)">Meet the coaches</span>
+      <h2 class="h2">Your kid's coach went to the Olympics. Twice.</h2>
+      <div class="rings"><i style="border-color:#0085C7"></i><i style="border-color:#F4C300"></i><i style="border-color:#fff"></i><i style="border-color:#009F3D"></i><i style="border-color:#DF0024"></i></div>
+      <p class="lede">Head coach Alex competed for Belarus at the 1996 Atlanta and 2000 Sydney Games. Alex and Alena have coached girls' artistic gymnastics here for about 25 years.</p>
+      <div class="coachlist">
+        <div class="coach"><b>Jacey Stewart</b><span>Coaching at MSC since 2013 · former Level 7 gymnast</span></div>
+        <div class="coach"><b>Nicky Terrase</b><span>Crown Athletics founder · 22+ years coaching cheer</span></div>
+        <div class="coach"><b>Jill Maggio</b><span>Former LSU swimmer · founded Evolution Swim in 2017</span></div>
+        <div class="coach"><b>Jamie Eppinette</b><span>36+ years teaching kids to swim</span></div>
+      </div>
+      <div style="margin-top:26px"><button class="btn yellow" data-go="gym">Meet the whole team →</button></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap center">
+    <span class="eyebrow">Happy families</span>
+    <h2 class="h2">Tired kids. Happy parents.</h2>
+    <div class="tgrid" style="text-align:left">
+      <div class="quote card reveal"><div class="stars">★★★★★</div><p>Birthday parties in the Diamond Mine and Jump Zone were safe, easy and completely stress-free. The staff was so helpful.</p><div class="who2"><i style="background:var(--red)">L</i><div>Lindsey B.<small>Mom of two</small></div></div></div>
+      <div class="quote card reveal" style="transform:rotate(1deg)"><div class="stars">★★★★★</div><p>My son goes to summer camp every single year. He makes friends and comes home happy and tired. Every day!</p><div class="who2"><i style="background:var(--pool)">M</i><div>Madison B.<small>Camp mom</small></div></div></div>
+      <div class="quote card reveal"><div class="stars">★★★★★</div><p>I love the senior exercise classes. The staff is so friendly and there's always coffee and water waiting for us.</p><div class="who2"><i style="background:var(--grass)">D</i><div>Debbie S.<small>Senior member</small></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#fff">
+  <div class="wrap center">
+    <span class="eyebrow">Life at MSC</span>
+    <h2 class="h2">A little peek inside.</h2>
+    <div class="gal-filters" id="galf"><button class="chip on" data-g="all">All</button><button class="chip" data-g="camp">Camp</button><button class="chip" data-g="water">Pool</button><button class="chip" data-g="gym">Gym</button><button class="chip" data-g="events">Events</button></div>
+    <div class="gallery" id="gallery"></div>
+  </div>
+</section>
+
+${visitBlock()}
+`;
+
+function visitBlock(){return `
+<section class="visit" id="hoursblock">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" style="color:var(--ink)">Plan your visit</span>
+      <h2 class="h2">Come see us on Highway 1088.</h2>
+      <p class="lede" style="color:#e6f6fd">Pool, courts, field, playground, putt-putt, café, gym and two kids' play areas. Open 7 days.</p>
+      <div class="hours card" style="margin-top:24px">
+        <h3>Hours</h3>
+        <div class="htabs" id="htabs"><button class="on" data-h="gym">Gym</button><button data-h="care">Fitness Care</button><button data-h="kids">Kids' Rooms</button></div>
+        <div id="hrows"></div>
+        <div class="hnote" id="hnote"></div>
+      </div>
+    </div>
+    <div class="mapcard">
+      <div class="map">
+        <svg viewBox="0 0 400 250" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="250" fill="#d6efdd"/><path d="M-10 170 Q120 140 200 160 T420 130" stroke="#fff" stroke-width="22" fill="none"/><path d="M-10 170 Q120 140 200 160 T420 130" stroke="#f3d77a" stroke-width="2" stroke-dasharray="10 8" fill="none"/>
+          <path d="M210 -10 L230 260" stroke="#fff" stroke-width="16"/><rect x="250" y="40" width="90" height="60" rx="10" fill="#9fd6f0"/><circle cx="80" cy="60" r="28" fill="#b9e3c4"/><circle cx="120" cy="210" r="22" fill="#b9e3c4"/>
+          <text x="20" y="160" font-family="Nunito" font-weight="900" font-size="12" fill="#6b6563">HWY 1088</text>
+        </svg>
+        <img src="${LOGO}" alt="" style="position:absolute;width:80px;left:50%;top:38%;transform:translate(-50%,-50%);filter:drop-shadow(0 6px 8px rgba(0,0,0,.3));animation:bob 3s infinite">
+      </div>
+      <div class="info">
+        <div>📍 23052 Highway 1088, Mandeville, LA 70448</div>
+        <div>📞 985-727-7277</div>
+        <div>✉️ info@mandevillesportscomplex.com</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px"><button class="btn red">Get Directions</button><button class="btn white" data-go="visit">Forms & Contact</button></div>
+      </div>
+    </div>
+  </div>
+</section>`}
+
+pages.parties=`
+<section class="phero bg-red"><div class="confetti"></div>
+  <div class="wrap">
+    <div><div class="crumbs"><button data-go="home">Home</button> / Birthday Parties</div><span class="eyebrow">Birthday parties</span><h1 style="margin:14px 0">Party like it's<br>your birthday. 🎂</h1><p class="lede">Four party zones, two hosts, pizza, cake, ice cream and zero cleanup. Build your party below and see your price in real time.</p></div>
+    <img class="hp" src="${P.bounceIn}" alt="Indoor bounce house party">
+  </div>
+</section>
+<section style="padding-top:30px">
+  <div class="wrap builder">
+    <div>
+      <div class="step card"><h3><i>1</i>Pick your zone</h3><div class="zones" id="zones"></div></div>
+      <div class="step card"><h3><i>2</i>How many kids?</h3>
+        <div class="range"><input type="range" min="5" max="40" value="20" id="kids"><output id="kidsOut">20</output></div>
+        <p style="font-weight:700;color:var(--muted);font-size:14px;margin-top:6px">Base package covers up to 20 kids · $12 per extra child</p>
+      </div>
+      <div class="step card"><h3><i>3</i>Pick a day</h3><div class="daypick" id="daypick"><button class="on" data-d="Sat">Saturday</button><button data-d="Sun">Sunday</button></div>
+        <p style="font-weight:700;color:var(--muted);font-size:14px;margin-top:10px">Pick a day, then we'll show you open time slots. Online booking replaces the 48-hour PDF packet.</p></div>
+      <div class="step card"><h3><i>4</i>Make it extra</h3><div class="addons" id="addons"></div></div>
+    </div>
+    <aside class="receipt card">
+      <span class="eyebrow" style="background:#fff">Your party</span>
+      <h3 style="margin-top:12px" id="rZone">Jump Zone</h3>
+      <div id="rLines" style="margin-top:12px"></div>
+      <div class="total"><span style="font-weight:900">Estimated total</span><b id="rTotal">$0</b></div>
+      <div class="dep" id="rDep"></div>
+      <button class="btn red" style="width:100%;justify-content:center" id="reserve">Reserve My Date →</button>
+      <ul class="incl"><b>Every party includes:</b><li>Tablecloths, plates, napkins + 2 balloon bouquets</li><li>3 XL pizzas & unlimited drink refills</li><li>Cake & ice cream</li><li>Party favors (MSC cup, coupon, candy)</li><li>2 party hosts · birthday kid FREE</li></ul>
+      <div style="margin-top:14px;font-weight:900;font-size:14px">Please leave at home:</div>
+      <div class="rules"><span>Glitter</span><span>Confetti</span><span>Silly String</span><span>Piñatas</span><span>Tape</span></div>
+    </aside>
+  </div>
+</section>`;
+
+pages.camps=`
+<section class="phero bg-grass"><div class="confetti"></div>
+  <div class="wrap">
+    <div><div class="crumbs"><button data-go="home">Home</button> / Camps & Care</div><span class="eyebrow">Camps & care</span><h1 style="margin:14px 0">School's out?<br>Camp's in! ☀️</h1><p class="lede">Summer camp, holiday camp and after-school care with daily swimming, bounce houses, a rock wall, crafts and a whole lot of new friends.</p></div>
+    <img class="hp" src="${P.campGroup}" alt="Summer campers">
+  </div>
+</section>
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="camptabs" id="camptabs"><button data-c="holiday" class="on">🎄 Holiday Camp</button><button data-c="summer">☀️ Summer Camp</button><button data-c="after">🎒 After School</button></div>
+    <div id="campBody"></div>
+  </div>
+</section>`;
+
+pages.swim=`
+<section class="phero bg-pool"><div class="confetti"></div>
+  <div class="wrap">
+    <div><div class="crumbs"><button data-go="home">Home</button> / Swim</div><span class="eyebrow">Swim lessons & teams</span><h1 style="margin:14px 0">From first float<br>to first place. 🏊</h1><p class="lede">Water safety, confidence and stroke technique in our Jr. Olympic pool, taught by instructors with decades on the deck.</p></div>
+    <img class="hp" src="${P.goggles}" alt="Kids with goggles">
+  </div>
+</section>
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="center"><span class="eyebrow">Swim lessons · summer 2027 schedule coming soon</span><h2 class="h2">Every swimmer has a next step.</h2><p class="lede">Concept: a clear level path so parents know exactly where their child fits. Tap a level to see the skills.</p></div>
+    <div class="levels" id="levels"></div>
+    <div class="split" style="padding:60px 0 0"><div class="wrap" style="gap:40px">
+      <div class="pic"><img src="${P.swimLesson}" alt="Swim lesson" style="box-shadow:12px 12px 0 var(--pool)"></div>
+      <div><h2 class="h2">Meet your instructors</h2>
+        <div class="coachlist" style="grid-template-columns:1fr"><div class="card" style="padding:18px"><b style="font-family:'Lilita One';font-size:22px;font-weight:400">Jamie Eppinette</b><p style="font-weight:700;color:var(--muted)">36+ years of experience · CPR & First Aid certified</p></div>
+        <div class="card" style="padding:18px"><b style="font-family:'Lilita One';font-size:22px;font-weight:400">Kyle Maggio</b><p style="font-weight:700;color:var(--muted)">10+ years coaching · B.S. Kinesiology · Certified Lifeguard Instructor</p></div></div>
+        <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn pool" data-form="swim">Apply for Lessons</button><button class="btn white" data-go="visit">See Schedule</button></div>
+      </div></div></div>
+    <div class="center" style="margin-top:70px"><span class="eyebrow">Swim teams</span><h2 class="h2">Ready to race?</h2></div>
+    <div class="teamrow">
+      <div class="team card"><img src="${P.swimTeam}" alt="Evolution Swim Team"><div class="body"><h3>Evolution Swim Team</h3><p style="font-weight:700;color:#4a4443">Ages 5–18, all levels. Learn all four strokes, starts, turns and race basics. Head coach Jill Maggio (former LSU swimmer) founded the team here in 2017.</p>
+        <table class="ptable"><tr><td>7 & under</td><td>5:00–5:30 pm</td></tr><tr><td>8–10 & new 11+</td><td>5:30–6:10 pm</td></tr><tr><td>11 & older</td><td>6:10–7:00 pm</td></tr></table>
+        <p style="font-size:13px;font-weight:700;color:var(--muted);margin-top:8px">Sample early-season practice times · Mon–Thu</p></div></div>
+      <div class="team card"><img src="${P.swimGirls}" alt="PCA swim team"><div class="body"><h3>Pontchartrain Christian Athletics</h3><p style="font-weight:700;color:#4a4443">Faith-based competitive swim focused on athletic excellence, teamwork and character.</p>
+        <table class="ptable"><tr><td>Charlie Hoolihan</td><td>985-966-9594</td></tr><tr><td>Melissa Breedlove</td><td>985-789-0184</td></tr></table>
+        <button class="btn white" style="margin-top:14px">Visit PCA →</button></div></div>
+    </div>
+  </div>
+</section>`;
+
+pages.gym=`
+<section class="phero bg-grape"><div class="confetti"></div>
+  <div class="wrap">
+    <div><div class="crumbs"><button data-go="home">Home</button> / Gymnastics & Cheer</div><span class="eyebrow">Gymnastics · Cheer · Tumbling</span><h1 style="margin:14px 0">Cartwheels, kips<br>& big confidence. 🤸</h1><p class="lede">Recreational classes for ages 3 and up, MGA competitive team coached by Olympians, and Crown Athletics cheer.</p></div>
+    <img class="hp" src="${P.beam}" alt="Gymnast on the beam">
+  </div>
+</section>
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="center"><span class="eyebrow">Recreational classes</span><h2 class="h2">Find the right class.</h2><p class="lede">9-week sessions · $180 · $145 for full-time After School Care families</p></div>
+    <div class="grid-prog" style="margin-top:30px" id="gymClasses"></div>
+  </div>
+</section>
+<section class="olympians">
+  <div class="wrap">
+    <div><span class="eyebrow" style="color:var(--ink)">MGA Team Gymnastics</span><h2 class="h2">Coached by an Olympian.</h2><p class="lede">Expert coaching and structured skill development, from Level 1 up, preparing athletes for competition and personal achievement.</p>
+      <div class="coachlist">
+        <div class="coach"><b>Alex · Head Coach</b><span>Belarus national team 1992–2000 · 1996 & 2000 Olympian</span></div>
+        <div class="coach"><b>Alena · Head Coach</b><span>Two Belarusian national teams, gymnastics & freestyle skiing</span></div>
+        <div class="coach"><b>Jacey Stewart</b><span>At MSC since 2013 · Level 7 gymnast, Level 8 T&T</span></div>
+        <div class="coach"><b>Katia Shostak</b><span>9 years coaching, 6 with MGA</span></div>
+        <div class="coach"><b>Sarah Loveless</b><span>Gymnastics, dance, ballet & tap since 2001</span></div>
+        <div class="coach"><b>Jenna Macaluso</b><span>National & world champion cheerleader · UCA instructor</span></div>
+      </div></div>
+    <div class="pic"><img src="${P.gymComp}" alt="MGA gymnasts at a meet" style="object-position:center"></div>
+  </div>
+</section>
+<section class="split">
+  <div class="wrap">
+    <div class="pic"><img src="${P.cheer}" alt="Crown Athletics Cheer" style="box-shadow:12px 12px 0 var(--grape)"></div>
+    <div><span class="eyebrow">Crown Athletics Cheer</span><h2 class="h2">Strength, flips & team spirit.</h2><p class="lede">Rec and competitive cheer led by founder Nicky Terrase, who has 22+ years coaching and took his first All-Star team to competition in 2003.</p>
+      <div class="card" style="padding:18px;margin:22px 0;display:flex;gap:16px;align-items:center;background:var(--yellow)"><div style="font-family:'Lilita One';font-size:44px;line-height:1;text-align:center">MAY</div><div><b style="font-size:18px">Cheer Evaluations</b><p style="font-weight:700">Held each spring at Mandeville Sports Complex. Get a reminder when sign-ups open.</p></div></div>
+      <button class="btn red">Remind Me</button></div>
+  </div>
+</section>`;
+
+pages.fitness=`
+<section class="phero bg-ink"><div class="confetti" style="opacity:.15"></div>
+  <div class="wrap">
+    <div><div class="crumbs"><button data-go="home">Home</button> / Fitness & Seniors</div><span class="eyebrow">Fitness center</span><h1 style="margin:14px 0">Your workout.<br><span style="color:var(--yellow)">Their playtime.</span></h1><p class="lede">Work out upstairs while the kids play in Fitness Care or the Diamond Mine. Classes, cardio, free weights, pool and courts, all in one membership.</p></div>
+    <img class="hp" src="${P.cycle}" alt="Indoor cycling class">
+  </div>
+</section>
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap">
+      <div><span class="eyebrow">Group classes</span><h2 class="h2">This week's schedule</h2></div>
+      <div class="chips" id="schedFilter" style="margin:0;justify-content:flex-start"><button class="chip on" data-k="all">All</button><button class="chip" data-k="cardio">Cardio</button><button class="chip" data-k="strength">Strength</button><button class="chip" data-k="dance">Dance</button><button class="chip" data-k="senior">Senior</button></div>
+    </div>
+    <div class="sched-days" id="schedDays"></div>
+    <div class="classes" id="classes"></div>
+
+    <div class="center" style="margin-top:80px"><span class="eyebrow">Memberships</span><h2 class="h2">A plan for every household.</h2><p class="lede">Annual or month-to-month · $100 registration for new members · guest passes $15 (13+) / $10 (12 & under)</p></div>
+    <div class="mem">
+      <div class="memc card"><h3>Individual</h3><div class="who3">Ages 21+ · Student rate for 14–20</div><ul><li>Full gym & cardio</li><li>All group classes</li><li>Pool & sun deck</li><li>Health assessment</li></ul><button class="btn white" style="margin-top:18px">Ask About Rates</button></div>
+      <div class="memc card hot"><span class="flag">Most popular</span><h3>Family</h3><div class="who3" style="color:var(--ink)">2 adults + 3 kids · Single Parent plan too</div><ul><li>Everything in Individual</li><li>Fitness Care for little ones</li><li>Diamond Mine access</li><li>Pool, courts & putt-putt</li></ul><button class="btn red" style="margin-top:18px">Start a Membership</button></div>
+      <div class="memc card"><h3>Hometown Heroes</h3><div class="who3">Teachers, first responders, military, pastors, healthcare</div><ul><li>Special member rate</li><li>Individual or family</li><li>Includes ASC & team families</li><li>Thank you for serving 💛</li></ul><button class="btn white" style="margin-top:18px">See If I Qualify</button></div>
+    </div>
+    <div class="amen"><div><span>🏊</span>Jr. Olympic pool</div><div><span>🏐</span>Beach volleyball</div><div><span>🏀</span>Basketball</div><div><span>🥊</span>Kickboxing studio</div><div><span>⛳</span>Putt-putt</div><div><span>☕</span>Café</div></div>
+  </div>
+</section>
+<section class="split" style="background:#f2ecff">
+  <div class="wrap">
+    <div><span class="eyebrow">Senior programs</span><h2 class="h2">Stay active, social & strong.</h2><p class="lede">Low-impact classes Monday, Wednesday and Friday at 9 AM, plus the Mandeville Senior Club with Bunco, line dancing, cookie swaps and holiday parties.</p>
+      <ul class="checks"><li>Reduces fall risk & keeps you mobile</li><li>Senior Cardio/Balance & Chair Yoga</li><li>Join the Senior Club: call Lee Davis at 985-630-5607</li></ul>
+      <b>Accepted fitness benefits</b>
+      <div class="partners"><span>SilverSneakers</span><span>Renew Active</span><span>Silver&Fit</span><span>Active&Fit</span><span>Peoples Health</span><span>Tivity Health</span><span>ASH</span></div></div>
+    <div class="pic"><img src="${P.senior}" alt="Senior exercise class" style="box-shadow:12px 12px 0 var(--grape)"></div>
+  </div>
+</section>`;
+
+pages.visit=`
+<section class="phero bg-pool"><div class="confetti"></div>
+  <div class="wrap">
+    <div><div class="crumbs"><button data-go="home">Home</button> / Plan a Visit</div><span class="eyebrow">Plan a visit</span><h1 style="margin:14px 0">See you soon! 👋</h1><p class="lede">Hours, directions, forms and waivers in one place. Fill out forms online instead of printing PDFs.</p></div>
+    <img class="hp" src="${P.poolWide}" alt="Pool and campus">
+  </div>
+</section>
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="center"><span class="eyebrow">Forms hub</span><h2 class="h2">No printer? No problem.</h2><p class="lede">Every form is now a quick online form that works on your phone and goes straight to the front desk.</p></div>
+    <div class="formsgrid">
+      <div class="fcard card"><span class="em">✍️</span><b>MSC Waiver</b><small>Required for all guests</small><button data-form="waiver">Fill out online →</button></div>
+      <div class="fcard card"><span class="em">🎂</span><b>Birthday Party Packet</b><small>Diamond Mine · 7 & under</small><button data-go="parties">Use party builder →</button></div>
+      <div class="fcard card"><span class="em">🎒</span><b>After School Care</b><small>2026–27 application</small><button data-form="asc">Apply →</button></div>
+      <div class="fcard card"><span class="em">🤸</span><b>Gymnastics Rec</b><small>9-week sessions</small><button data-form="gym">Register →</button></div>
+      <div class="fcard card"><span class="em">🦃</span><b>Thanksgiving Camp</b><small>Nov 23–25</small><button data-go="camps">Pick days →</button></div>
+      <div class="fcard card"><span class="em">🗳️</span><b>Election Day Camp</b><small>Nov 3 · this one's done!</small><button data-go="camps">See all holiday dates →</button></div>
+      <div class="fcard card"><span class="em">💪</span><b>Fitness Packet</b><small>New members</small><button data-form="fit">Start →</button></div>
+      <div class="fcard card"><span class="em">☀️</span><b>Summer Camp 2027</b><span class="soon">Coming Jan 2027</span><button data-form="notify">Notify me →</button></div>
+    </div>
+  </div>
+</section>
+${visitBlock()}
+<section class="contact">
+  <div class="wrap">
+    <div><span class="eyebrow">Contact</span><h2 class="h2">Questions? We're friendly.</h2><p class="lede">Send a note and the front desk will get back to you. For party dates, the party builder is the fastest way.</p>
+      <div style="display:grid;gap:12px;margin-top:24px">
+        <div class="card" style="padding:16px;display:flex;gap:14px;align-items:center"><span style="font-size:30px">📞</span><div><b>Front desk</b><div style="font-weight:700">985-727-7277</div></div></div>
+        <div class="card" style="padding:16px;display:flex;gap:14px;align-items:center"><span style="font-size:30px">🌻</span><div><b>Senior Club · Lee Davis</b><div style="font-weight:700">985-630-5607</div></div></div>
+      </div></div>
+    <form class="card" style="padding:26px" onsubmit="event.preventDefault();this.innerHTML='<div class=&quot;success&quot;><div class=&quot;em&quot;>📬</div><h3 style=&quot;font-size:30px;margin-top:10px&quot;>Message sent!</h3><p style=&quot;font-weight:700&quot;>We\'ll be in touch soon.</p></div>'">
+      <div class="frow"><div class="field">Name<input required placeholder="Your name"></div><div class="field">Phone<input placeholder="(985) 555-0100"></div></div>
+      <div class="field">Email<input type="email" required placeholder="you@email.com"></div>
+      <div class="field">I'm asking about<select><option>Birthday parties</option><option>Summer / holiday camp</option><option>After school care</option><option>Swim lessons</option><option>Gymnastics / cheer</option><option>Membership</option><option>Something else</option></select></div>
+      <div class="field">Message<textarea rows="4" placeholder="How can we help?"></textarea></div>
+      <button class="btn red">Send Message</button>
+    </form>
+  </div>
+</section>`;
+
+/* ================= DATA ================= */
+const programs=[
+  {t:'Summer Camp',i:'camp',ages:['kid','teen'],img:P.field,tag:'Ages 5–13',d:'Daily swimming, bounce houses, rock wall, crafts, themed weeks and in-house field trips like the petting zoo and game truck.',price:'Apps open Jan 2027',go:'camps',tab:'summer'},
+  {t:'Holiday Camp',i:'camp',ages:['kid','teen'],img:P.holiday,tag:'Ages 5–13',d:'Fun, safe days whenever school is out. Thanksgiving, Christmas, Mardi Gras and more.',price:'$35/day',go:'camps',tab:'holiday'},
+  {t:'After School Care',i:'camp',ages:['kid'],img:P.homework,tag:'Bus & van pickup',d:'Homework help, snacks, Diamond Mine, mini golf, sports and the rock wall. Pickup from 6 local schools.',price:'Ask for rates',go:'camps',tab:'after'},
+  {t:'Swim Lessons',i:'water',ages:['tot','kid','teen'],img:P.swimLesson,tag:'All levels',d:'Water safety, confidence and stroke technique with instructors who have decades of experience.',price:'Summer 2027',go:'swim'},
+  {t:'Evolution Swim Team',i:'water',ages:['kid','teen'],img:P.swimTeam,tag:'Ages 5–18',d:'A friendly rec swim team for new and experienced swimmers. All four strokes, starts and turns.',price:'Summer season',go:'swim'},
+  {t:'Tots Gymnastics',i:'gym',ages:['tot'],img:P.gym2,tag:'Ages 3–4',d:'First rolls, jumps and balance in a happy, safe space built for little bodies.',price:'$180 / 9 wks',go:'gym'},
+  {t:'Rec Gymnastics & Tumble',i:'gym',ages:['kid','teen'],img:P.gym1,tag:'9-week sessions',d:'Girls gymnastics, tumbling, and trampoline & tumbling classes for every skill level.',price:'$180 / 9 wks',go:'gym'},
+  {t:'MGA Team Gymnastics',i:'gym',ages:['kid','teen'],img:P.gymTeam,tag:'Competitive',d:'Competitive gymnastics led by a two-time Olympian, for athletes from Level 1 up.',price:'By invitation',go:'gym'},
+  {t:'Crown Athletics Cheer',i:'gym',ages:['kid','teen'],img:P.cheer,tag:'Rec & All-Star',d:'Strength, flexibility and cheer technique with 22-year coach Nicky Terrase.',price:'Evals each May',go:'gym'},
+  {t:'Birthday Parties',i:'party',ages:['tot','kid'],img:P.jumpZone,tag:'4 party zones',d:'Diamond Mine, Jump Zone, Pool or Pavilion. Pizza, cake and two hosts included.',price:'From $375',go:'parties'},
+  {t:'Fitness Care & Diamond Mine',i:'fit',ages:['tot','kid'],img:P.bounce2,tag:'Birth–12',d:'Supervised play for kids while parents work out upstairs.',price:'With membership',go:'fitness'},
+  {t:'Group Fitness Classes',i:'fit',ages:['teen','adult'],img:P.cycle,tag:'All levels',d:'HIIT, Zumba, Kickboxing, Cycling, Muscle Jam, Bootcamp and more, all week long.',price:'Included',go:'fitness'},
+  {t:'Fitness Center',i:'fit',ages:['teen','adult','senior'],img:P.weights,tag:'Open 7 days',d:'Cardio, free weights, stations, a kickboxing room, locker rooms and a Jr. Olympic pool.',price:'Memberships',go:'fitness'},
+  {t:'Family Pool Days',i:'water',ages:['tot','kid','teen','adult','senior'],img:P.pool,tag:'Members',d:'Jr. Olympic pool, kiddie pool and sun deck with a covered patio for parents.',price:'With membership',go:'fitness'},
+  {t:'Senior Fitness',i:'fit',ages:['senior'],img:P.senior,tag:'M · W · F 9 AM',d:'Low-impact Cardio/Balance and Chair Yoga. SilverSneakers and Renew Active accepted.',price:'Benefits accepted',go:'fitness'},
+  {t:'Mandeville Senior Club',i:'party',ages:['senior'],img:P.bunny2,tag:'Social club',d:'Bunco, line dancing, cookie swaps, Friendsgiving and Mardi Gras fish fry.',price:'Call Lee Davis',go:'fitness'},
+];
+const galleryItems=[
+  [P.splash,'camp'],[P.goggles,'water'],[P.gym1,'gym'],[P.icee,'camp'],[P.bunny,'events'],[P.floaty,'water'],[P.gymMeet,'gym'],[P.slide,'camp'],[P.egg,'events'],[P.swimmer,'water'],[P.dunk,'camp'],[P.beam,'gym'],[P.snow,'camp'],[P.swimTeam,'water'],[P.cheer,'gym'],[P.lunch,'camp'],[P.inflat,'water'],[P.crafts,'events'],[P.boy,'camp'],[P.partyTable,'events']
+];
+const zones=[
+  {k:'dm',n:'Diamond Mine',img:P.bounceIn,d:'60 min private play: foam pit, rock wall, bounce house & tumble track',age:'Ages 7 & under',base:375},
+  {k:'jz',n:'Jump Zone',img:P.jump,d:'60 min of trampolines, obstacle inflatable, tumble tracks & foam pit',age:'All ages',base:375},
+  {k:'pool',n:'Pool Party',img:P.pool,d:'1.5 hrs in the pool & kiddie pool with covered patio. Lifeguard included',age:'All ages',base:375},
+  {k:'pav',n:'Outdoor Pavilion',img:P.pavilion,d:'1.5 hrs: courts, field, playground, mini golf, waterslide & cabana',age:'All ages',base:375},
+];
+const addonDefs=[
+  {k:'time',n:'Extra ½ hour',s:'$50 each',p:50,max:2},
+  {k:'pizza',n:'Extra XL pizza',s:'$12 each',p:12,max:6},
+  {k:'cake',n:'Theme cake upgrade',s:'$12',p:12,max:1},
+  {k:'bday',n:'Additional birthday child',s:'$12 each',p:12,max:3},
+  {k:'drink',n:'Extra drink pitcher',s:'$4 each',p:4,max:6},
+];
+const holidayDates=[
+ ['2026-10-02','Fall Break'],['2026-10-05','Fall Break'],['2026-10-09','Half Day'],['2026-11-03','Election Day'],
+ ['2026-11-23','Thanksgiving'],['2026-11-24','Thanksgiving'],['2026-11-25','Thanksgiving'],['2026-12-18','Half Day'],
+ ['2026-12-21','Christmas'],['2026-12-22','Christmas'],['2026-12-23','Christmas'],['2026-12-28','Christmas'],['2026-12-29','Christmas'],['2026-12-30','Christmas'],
+ ['2027-01-04','Christmas'],['2027-01-05','Christmas'],['2027-01-18','MLK Day'],
+ ['2027-02-08','Mardi Gras'],['2027-02-10','Mardi Gras'],['2027-02-11','Mardi Gras'],['2027-02-12','Mardi Gras'],['2027-03-12','Half Day'],
+ ['2027-03-29','Easter'],['2027-03-30','Easter'],['2027-03-31','Easter'],['2027-04-01','Easter'],['2027-04-02','Easter'],['2027-04-05','Easter'],['2027-05-28','Half Day']
+];
+const schedule={
+  Mon:[['9:00 AM','Senior Cardio/Balance','Deborah','senior'],['9:30 AM','HIIT','Leigh Ann','cardio'],['6:00 PM','Cardio Burn','Leigh Ann','cardio']],
+  Tue:[['9:30 AM','Muscle Jam','Chris','strength'],['5:15 PM','Kickboxing','Rayne','cardio'],['6:00 PM','Zumba','Lori','dance']],
+  Wed:[['9:00 AM','Senior Cardio/Balance','Deborah','senior'],['9:30 AM','Indoor Cycling','Leigh Ann','cardio'],['5:30 PM','Indoor Cycling','Amanda','cardio'],['6:00 PM','Cardio Burn','Leigh Ann','cardio']],
+  Thu:[['9:30 AM','Bootcamp','Chris','strength'],['5:30 PM','Full Body Blast','Amanda','strength']],
+  Fri:[['9:00 AM','Senior Chair Yoga','Deborah','senior'],['9:30 AM','Muscle Jam','Chris','strength']],
+  Sat:[['9:00 AM','Kickboxing','Lori','cardio'],['10:00 AM','Zumba','Lori','dance']],
+  Sun:[]
+};
+const hours={
+  gym:[['Mon–Thu','5:00 AM – 9:00 PM',[1,2,3,4]],['Friday','5:00 AM – 7:00 PM',[5]],['Saturday','8:00 AM – 7:00 PM',[6]],['Sunday','9:00 AM – 7:00 PM',[0]]],
+  care:[['Mon–Sat mornings','9:00 – 11:00 AM',[1,2,3,4,5,6]],['Mon–Thu evenings','5:00 – 8:00 PM',[1,2,3,4]],['Friday evening','4:30 – 6:30 PM',[5]]],
+  kids:[['Childcare Room (birth–3)','5:00 – 8:00 PM',[]],['Diamond Mine (ages 4–12)','Set times · ask desk',[]]]
+};
+const hnotes={gym:'Fitness center, pool & courts.',care:'Supervised child care while you work out. Equipment not provided.',kids:'Childcare Room is for birth to 3 only. Diamond Mine is ages 4–12.'};
+
+/* ================= ROUTER ================= */
+const main=document.getElementById('pages');
+Object.entries(pages).forEach(([k,html])=>{const s=document.createElement('div');s.className='page';s.id='pg-'+k;s.innerHTML=html;main.appendChild(s)});
+const app=document.getElementById('app');
+function scrollTopApp(){ if(document.body.classList.contains('phone')) app.scrollTo({top:0}); else window.scrollTo({top:0}); }
+function go(k,tab){
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('show',p.id==='pg-'+k));
+  document.querySelectorAll('#navlinks button').forEach(b=>b.classList.toggle('active',b.dataset.go===k));
+  document.getElementById('mobilenav').classList.remove('on');
+  if(k==='camps') setCamp(tab||'holiday');
+  scrollTopApp(); history.replaceState(null,'','#'+k); observe();
+}
+document.addEventListener('click',e=>{
+  const g=e.target.closest('[data-go]'); if(g){e.preventDefault();go(g.dataset.go,g.dataset.tab);return}
+  const s=e.target.closest('[data-scroll]'); if(s){document.getElementById(s.dataset.scroll).scrollIntoView({behavior:'smooth'});return}
+  const f=e.target.closest('[data-form]'); if(f){openForm(f.dataset.form);return}
+  const pr=e.target.closest('.prog'); if(pr&&pr.dataset.go){go(pr.dataset.go,pr.dataset.tab)}
+});
+document.getElementById('burger').onclick=()=>document.getElementById('mobilenav').classList.toggle('on');
+document.getElementById('phoneBtn').onclick=function(){document.body.classList.toggle('phone');this.classList.toggle('on');this.textContent=document.body.classList.contains('phone')?'🖥️ Desktop view':'📱 Mobile view';observe()};
+
+/* reveal on scroll */
+let io;
+function observe(){
+  if(io) io.disconnect();
+  io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{root:document.body.classList.contains('phone')?app:null,threshold:.12});
+  document.querySelectorAll('.page.show .reveal:not(.in)').forEach(el=>io.observe(el));
+}
+
+/* ================= OPEN NOW ================= */
+function openStatus(){
+  const n=new Date(),d=n.getDay(),m=n.getHours()*60+n.getMinutes();
+  const o={0:[540,1140],1:[300,1260],2:[300,1260],3:[300,1260],4:[300,1260],5:[300,1140],6:[480,1140]}[d];
+  const open=m>=o[0]&&m<o[1]; const fmt=x=>{let h=Math.floor(x/60),mm=x%60,ap=h>=12?'PM':'AM';h=h%12||12;return h+(mm?':'+String(mm).padStart(2,'0'):'')+' '+ap};
+  document.getElementById('dot').classList.toggle('closed',!open);
+  document.getElementById('openTxt').textContent=open?`Open now · until ${fmt(o[1])}`:(m<o[0]?`Opens today at ${fmt(o[0])}`:'Closed · see you tomorrow!');
+}
+openStatus();
+
+/* ================= HOME: finder ================= */
+let age='kid',interest='all';
+function renderFinder(){
+  const g=document.getElementById('progGrid');
+  const list=programs.filter(p=>p.ages.includes(age)&&(interest==='all'||p.i===interest));
+  g.innerHTML=list.length?list.map(p=>`<div class="prog card" data-go="${p.go}" ${p.tab?`data-tab="${p.tab}"`:''} style="cursor:pointer"><div class="img"><img loading="lazy" src="${p.img}" alt="${p.t}"><span class="tag">${p.tag}</span></div><div class="body"><h3>${p.t}</h3><p>${p.d}</p><div class="meta"><span class="price">${p.price}</span><span class="go">Learn more →</span></div></div></div>`).join(''):`<div class="empty">No matches for that combo yet. Try "Everything"! 🙂</div>`;
+}
+document.getElementById('who').onclick=e=>{const b=e.target.closest('button');if(!b)return;age=b.dataset.age;[...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b));renderFinder()};
+document.getElementById('interest').onclick=e=>{const b=e.target.closest('button');if(!b)return;interest=b.dataset.i;[...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b));renderFinder()};
+renderFinder();
+
+/* gallery + lightbox */
+let gf='all',gl=[],gi=0;
+function renderGallery(){gl=galleryItems.filter(x=>gf==='all'||x[1]===gf);document.getElementById('gallery').innerHTML=gl.map((x,i)=>`<figure data-i="${i}"><img loading="lazy" src="${x[0]}" alt=""></figure>`).join('')}
+document.getElementById('galf').onclick=e=>{const b=e.target.closest('button');if(!b)return;gf=b.dataset.g;[...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b));renderGallery()};
+document.getElementById('gallery').onclick=e=>{const f=e.target.closest('figure');if(!f)return;gi=+f.dataset.i;showLb()};
+const lb=document.getElementById('lb');
+function showLb(){document.getElementById('lbimg').src=gl[gi][0];lb.classList.add('on')}
+document.getElementById('lbx').onclick=()=>lb.classList.remove('on');
+document.getElementById('lbp').onclick=()=>{gi=(gi-1+gl.length)%gl.length;showLb()};
+document.getElementById('lbn').onclick=()=>{gi=(gi+1)%gl.length;showLb()};
+lb.onclick=e=>{if(e.target===lb)lb.classList.remove('on')};
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('on'))return;if(e.key==='Escape')lb.classList.remove('on');if(e.key==='ArrowRight')document.getElementById('lbn').click();if(e.key==='ArrowLeft')document.getElementById('lbp').click()});
+renderGallery();
+
+/* hours widget (appears twice) */
+function bindHours(root){
+  const tabs=root.querySelector('#htabs'),rows=root.querySelector('#hrows'),note=root.querySelector('#hnote');
+  const draw=k=>{const d=new Date().getDay();rows.innerHTML=hours[k].map(h=>`<div class="hrow ${h[2].includes(d)?'today':''}"><span>${h[0]}${h[2].includes(d)?' · today':''}</span><span>${h[1]}</span></div>`).join('');note.textContent=hnotes[k]};
+  tabs.onclick=e=>{const b=e.target.closest('button');if(!b)return;[...tabs.children].forEach(x=>x.classList.toggle('on',x===b));draw(b.dataset.h)};
+  draw('gym');
+}
+document.querySelectorAll('.visit').forEach(bindHours);
+
+/* ================= PARTY BUILDER ================= */
+const party={zone:'jz',kids:20,day:'Sat',add:{time:0,pizza:0,cake:0,bday:0,drink:0}};
+const money=n=>'$'+n.toFixed(2).replace(/\.00$/,'');
+function renderZones(){document.getElementById('zones').innerHTML=zones.map(z=>`<button class="zone ${party.zone===z.k?'on':''}" data-z="${z.k}"><img src="${z.img}" alt=""><div><b>${z.n}</b><small>${z.d}</small><span class="age">${z.age}</span></div></button>`).join('')}
+function renderAddons(){document.getElementById('addons').innerHTML=addonDefs.map(a=>{const dis=a.k==='time'&&party.zone!=='dm'&&party.zone!=='jz';return `<div class="addon" style="${dis?'opacity:.45':''}"><div>${a.n}<small>${a.s}${a.k==='time'?(party.day==='Sun'?' · Sundays: added at the start':' · Saturdays: start or end'):''}</small></div><div class="stepper"><button data-a="${a.k}" data-v="-1" ${dis?'disabled':''}>−</button><span>${party.add[a.k]}</span><button data-a="${a.k}" data-v="1" ${dis?'disabled':''}>+</button></div></div>`}).join('')}
+function calc(){
+  const z=zones.find(x=>x.k===party.zone);const extraKids=Math.max(0,party.kids-20);
+  const lines=[['Standard package (up to 20 kids)',z.base]];
+  if(extraKids) lines.push([`${extraKids} extra kid${extraKids>1?'s':''} × $12`,extraKids*12]);
+  addonDefs.forEach(a=>{const q=party.add[a.k];if(q)lines.push([`${a.n}${q>1?' × '+q:''}`,q*a.p])});
+  const sub=lines.reduce((s,l)=>s+l[1],0),grat=sub*.15;lines.push(['Gratuity (15%)',grat]);
+  document.getElementById('rZone').textContent=z.n+' · '+(party.day==='Sat'?'Saturday':'Sunday');
+  document.getElementById('rLines').innerHTML=lines.map(l=>`<div class="line"><span>${l[0]}</span><span>${money(l[1])}</span></div>`).join('');
+  animateNum(document.getElementById('rTotal'),sub+grat);
+  document.getElementById('rDep').innerHTML=`Reserve today with a <u>$187.50 deposit</u> · ${party.kids} kids`;
+}
+let curTotal=0;
+function animateNum(el,to){const from=curTotal;curTotal=to;const t0=performance.now();const step=t=>{const p=Math.min(1,(t-t0)/400);el.textContent=money(Math.round(from+(to-from)*p));if(p<1)requestAnimationFrame(step);else el.textContent=money(to)};requestAnimationFrame(step)}
+document.getElementById('zones').onclick=e=>{const b=e.target.closest('.zone');if(!b)return;party.zone=b.dataset.z;if(party.zone!=='dm'&&party.zone!=='jz')party.add.time=0;renderZones();renderAddons();calc()};
+document.getElementById('kids').oninput=e=>{party.kids=+e.target.value;document.getElementById('kidsOut').textContent=party.kids;calc()};
+document.getElementById('daypick').onclick=e=>{const b=e.target.closest('button');if(!b)return;party.day=b.dataset.d;[...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b));renderAddons();calc()};
+document.getElementById('addons').onclick=e=>{const b=e.target.closest('button[data-a]');if(!b)return;const a=addonDefs.find(x=>x.k===b.dataset.a);party.add[a.k]=Math.max(0,Math.min(a.max,party.add[a.k]+(+b.dataset.v)));renderAddons();calc()};
+document.getElementById('reserve').onclick=()=>openForm('party');
+renderZones();renderAddons();calc();
+
+/* ================= CAMPS ================= */
+const camp={days:new Set(),before:false,after:false,lunch:false};
+const packItems=['Camp shirt','Swimsuit (under clothes)','Clean towel (no beach towels)','Waterproof bag','Croc-style sandals','Change of clothes (K–1st)','Sunscreen applied','Lunch (no peanuts!)','Snack card money','Puddle jumper (non-swimmers)','Everything labeled'];
+const packed=new Set();
+function setCamp(c){
+  document.querySelectorAll('#camptabs button').forEach(b=>b.classList.toggle('on',b.dataset.c===c));
+  const body=document.getElementById('campBody');
+  if(c==='holiday'){
+    const today=new Date();today.setHours(0,0,0,0);
+    const up=holidayDates.filter(d=>new Date(d[0]+'T00:00')>=today);
+    body.innerHTML=`<div class="center"><h2 class="h2">Pick your holiday camp days</h2><p class="lede">Ages 5–13 · 9 AM – 3 PM · Tap the days you need and see your total instantly.</p></div>
+      <div class="calgrid" id="cal" style="margin-top:26px">${up.map(([d,n])=>{const dt=new Date(d+'T00:00');return `<button class="cday ${camp.days.has(d)?'on':''}" data-d="${d}"><div class="mo">${dt.toLocaleString('en-US',{month:'short'})}</div><div class="d">${dt.getDate()}</div><div class="w">${dt.toLocaleString('en-US',{weekday:'long'})}</div><div class="n">${n}</div></button>`}).join('')}</div>
+      <div class="opts"><label class="opt"><input type="checkbox" id="oB" ${camp.before?'checked':''}>Before Care 7–9 AM · $10</label><label class="opt"><input type="checkbox" id="oA" ${camp.after?'checked':''}>After Care 3–6 PM · $15</label><label class="opt"><input type="checkbox" id="oL" ${camp.lunch?'checked':''}>Lunch · $8</label></div>
+      <div class="campbar"><div><div style="font-weight:800;opacity:.8" id="cSum">No days picked yet</div><b id="cTot">$0</b></div><button class="btn yellow" id="cGo">Reserve These Days →</button></div>
+      <p style="font-weight:700;color:var(--muted);margin-top:10px;font-size:14px">Includes the $50 annual family registration fee. Reserved days are paid whether or not your child attends. Space is limited!</p>
+      <div class="feats"><div class="feat card"><div class="em">🎨</div><b>Arts & crafts</b><span>Projects to bring home</span></div><div class="feat card"><div class="em">🏀</div><b>Group games</b><span>Indoor & outdoor</span></div><div class="feat card"><div class="em">🧗</div><b>Rock wall</b><span>Plus bounce houses</span></div><div class="feat card"><div class="em">👯</div><b>New friends</b><span>Supervised free play</span></div></div>`;
+    const recalc=()=>{const n=camp.days.size;const per=35+(camp.before?10:0)+(camp.after?15:0)+(camp.lunch?8:0);const tot=n?n*per+50:0;document.getElementById('cTot').textContent=money(tot);document.getElementById('cSum').textContent=n?`${n} day${n>1?'s':''} × ${money(per)} + $50 registration`:'No days picked yet'};
+    document.getElementById('cal').onclick=e=>{const b=e.target.closest('.cday');if(!b)return;const d=b.dataset.d;camp.days.has(d)?camp.days.delete(d):camp.days.add(d);b.classList.toggle('on');recalc()};
+    ['oB','oA','oL'].forEach((id,i)=>document.getElementById(id).onchange=e=>{camp[['before','after','lunch'][i]]=e.target.checked;recalc()});
+    document.getElementById('cGo').onclick=()=>openForm('camp');
+    recalc();
+  } else if(c==='summer'){
+    body.innerHTML=`<div class="split" style="padding:0"><div class="wrap">
+      <div><h2 class="h2">The summer they'll talk about all year.</h2><p class="lede">Daily swimming, gymnastics and tumbling, bounce houses, the rock wall, crafts, playground time and themed weeks.</p>
+        <div class="card" style="padding:20px;margin:22px 0;background:var(--yellow)"><b style="font-family:'Lilita One';font-size:24px;font-weight:400">🎟️ Spring Camp Kickoff</b><p style="font-weight:700;margin-top:6px">At last year's application event, families got <u>half off registration</u> and a chance to win a free week of camp ($180 value). Get notified so you don't miss this year's!</p></div>
+        <button class="btn red" data-form="notify">Get Notified in January</button></div>
+      <div class="pic"><img src="${P.slide}" alt="Water slide at camp" style="box-shadow:12px 12px 0 var(--grass)"></div></div></div>
+      <div class="center" style="margin-top:60px"><h2 class="h2">In-house field trips 🚌</h2><p class="lede">The fun comes to us, so no long bus rides.</p></div>
+      <div class="feats"><div class="feat card"><div class="em">💦</div><b>Extreme Water Days</b><span>Waterslides & dunk booth</span></div><div class="feat card"><div class="em">🎮</div><b>Game Truck</b><span>Video gaming on wheels</span></div><div class="feat card"><div class="em">🐐</div><b>Alotta Culotta Zoo</b><span>Mobile petting zoo</span></div><div class="feat card"><div class="em">🤠</div><b>Instagator Ranch</b><span>Plus Sports Block & more</span></div></div>
+      <div style="margin-top:60px" class="card"><div style="padding:26px"><h2 class="h2" style="font-size:36px;margin-top:0">Packing checklist ✅</h2><p class="lede" style="font-size:16px">Check things off the night before. Your progress is saved on this phone.</p>
+        <div class="progressbar"><i id="pbar"></i></div>
+        <div class="packlist" id="pack">${packItems.map(p=>`<div class="pack ${packed.has(p)?'on':''}" data-p="${p}"><span class="bx"></span>${p}</div>`).join('')}</div>
+        <p style="font-weight:800;margin-top:16px;color:var(--red)">🚫 No phones, smart watches, toys or peanut products</p></div></div>
+      <div class="split" style="padding:60px 0 0"><div class="wrap"><div><h2 class="h2" style="font-size:38px">Carline pickup made easy 🚗</h2>
+        <ul class="checks"><li>Carline runs 3:00–3:30 PM by the café entrance</li><li>Put your child's name in big letters on the dash</li><li>Have your security code ready, or bring photo ID inside</li><li>Not picked up by 3:30? They join After Care ($15)</li></ul></div>
+        <div class="card" style="padding:24px;background:var(--pool);color:#fff"><b style="font-family:'Lilita One';font-size:26px;font-weight:400">Concept: live carline 📲</b><p style="font-weight:700;margin-top:8px;line-height:1.5">Parents tap "I'm here" from their phone and staff have the camper ready at the curb. Fewer lines, safer pickups.</p><button class="btn yellow" style="margin-top:14px" onclick="this.textContent='✅ Ava is on her way out!'">I'm in the carline</button></div></div></div>`;
+    const pb=()=>{document.getElementById('pbar').style.width=(packed.size/packItems.length*100)+'%'};
+    document.getElementById('pack').onclick=e=>{const it=e.target.closest('.pack');if(!it)return;const p=it.dataset.p;packed.has(p)?packed.delete(p):packed.add(p);it.classList.toggle('on');pb()};pb();
+  } else {
+    body.innerHTML=`<div class="split" style="padding:0"><div class="wrap">
+      <div><h2 class="h2">After school, sorted.</h2><p class="lede">We pick them up and they do homework, play, swim on special days and burn off energy. You pick up a happy kid.</p>
+      <ul class="checks"><li>Homework help & daily snacks</li><li>Diamond Mine, rock wall, bounce houses & trampolines</li><li>Basketball, soccer, flag football, sand volleyball, tetherball</li><li>School holidays: 7 AM – 6 PM for a $25 flat rate</li></ul>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn red" data-form="asc">Apply for 2026–27</button><button class="btn white" data-go="visit">Ask a Question</button></div></div>
+      <div class="pic"><img src="${P.homework}" alt="Homework time" style="box-shadow:12px 12px 0 var(--grass)"></div></div></div>
+      <div class="center" style="margin-top:60px"><h2 class="h2">Does my school ride to MSC?</h2></div>
+      <div class="schools"><div class="card"><h4>🚌 St. Tammany Parish buses</h4><ul><li>Magnolia Trace Elementary</li><li>Gayle Sloan Middle School</li><li>Marigny Elementary</li></ul></div><div class="card"><h4>🚐 MSC vans</h4><ul><li>Woodlake Elementary</li><li>Lake Harbor Middle School</li><li>Mandeville Elementary</li></ul></div></div>
+      <div class="feats"><div class="feat card"><div class="em">🤸</div><b>$145 gymnastics</b><span>Rec, Cheer Tumble or T&T, 9 weeks</span></div><div class="feat card"><div class="em">⭐</div><b>$170 Shiny Stars</b><span>Per 9-week session</span></div><div class="feat card"><div class="em">🏋️</div><b>$54.63/mo</b><span>Annual family fitness membership</span></div><div class="feat card"><div class="em">🎁</div><b>$50 credit</b><span>For each new family you refer</span></div></div>`;
+  }
+}
+
+/* ================= SWIM LEVELS ================= */
+const lv=[['🐣','Splash Starters','Bubbles, floating and feeling safe in the water'],['🐠','Little Fish','Kicking, gliding and getting to the wall safely'],['🐬','Dolphins','Freestyle & backstroke with rhythmic breathing'],['🦈','Sharks','All four strokes. Ready for Evolution Swim Team!']];
+document.getElementById('levels').innerHTML=lv.map((l,i)=>`<div class="level card" style="background:${['#e6f6fd','#d0eefb','#b3e3f7','#93d6f2'][i]}"><div class="fish">${l[0]}</div><b>${l[1]}</b><span>${l[2]}</span></div>`).join('');
+
+/* ================= GYM CLASSES ================= */
+const gc=[['Tots','Ages 3–4',P.gym2,'Rolls, jumps, balance beam and lots of giggles. A first taste of the gym.'],['Girls Gymnastics','School age',P.beam,'Bars, beam, floor and vault skills, progressing session by session.'],['Tumble','School age',P.gymMeet,'Cartwheels, round-offs and handsprings. Great for future cheerleaders.'],['Trampoline & Tumbling','School age',P.gym1,'Air awareness and power tumbling on trampolines and tumble tracks.'],['Shiny Stars','Special program',P.gymTeam,'$170 per 9-week session.'],['Cheer Tumble','With Crown Athletics',P.cheer,'Tumbling skills built for the cheer mat.']];
+document.getElementById('gymClasses').innerHTML=gc.map(c=>`<div class="prog card"><div class="img"><img loading="lazy" src="${c[2]}" alt="${c[0]}"><span class="tag">${c[1]}</span></div><div class="body"><h3>${c[0]}</h3><p>${c[3]}</p><div class="meta"><span class="price">${c[0]==='Shiny Stars'?'$170':'$180'} / 9 wks</span><button class="go" data-form="gym">Register →</button></div></div></div>`).join('');
+
+/* ================= FITNESS SCHEDULE ================= */
+const dnames=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];let sday=dnames[new Date().getDay()];if(sday==='Sun')sday='Mon';let sk='all';
+function drawSched(){
+  const td=dnames[new Date().getDay()];
+  document.getElementById('schedDays').innerHTML=['Mon','Tue','Wed','Thu','Fri','Sat'].map(d=>`<button data-d="${d}" class="${d===sday?'on':''}">${d}${d===td?'<span class="t">TODAY</span>':''}</button>`).join('');
+  const l=schedule[sday].filter(c=>sk==='all'||c[3]===sk);
+  document.getElementById('classes').innerHTML=l.length?l.map(c=>`<div class="cls card"><div class="time">${c[0]}</div><div><b>${c[1]}</b><small>with ${c[2]}</small></div><span class="pill p-${c[3]}">${c[3]}</span></div>`).join(''):'<div class="empty card">No classes match. Try another day or filter!</div>';
+}
+document.getElementById('schedDays').onclick=e=>{const b=e.target.closest('button');if(!b)return;sday=b.dataset.d;drawSched()};
+document.getElementById('schedFilter').onclick=e=>{const b=e.target.closest('button');if(!b)return;sk=b.dataset.k;[...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b));drawSched()};
+drawSched();
+
+/* ================= FORMS MODAL ================= */
+const modal=document.getElementById('modal'),mc=document.getElementById('modalCard');
+const formTitles={waiver:['MSC Waiver ✍️','Takes about 2 minutes'],party:['Reserve your party 🎉','We\'ll confirm your date within one business day'],camp:['Reserve camp days ☀️','We\'ll confirm and send payment details'],asc:['After School Care 🎒','2026–27 application'],gym:['Gymnastics registration 🤸','Recreational classes · 9-week sessions'],swim:['Swim lessons 🏊','Join the list for summer 2027'],fit:['New member packet 💪','Start your membership'],notify:['Get notified 🔔','We\'ll email you the moment applications open']};
+function openForm(k){
+  const [t,s]=formTitles[k]||formTitles.waiver;let step=0;const total=k==='notify'?1:3;
+  const screens=[
+    `<div class="frow"><div class="field">Parent / guardian<input placeholder="Full name"></div><div class="field">Phone<input placeholder="(985) 555-0100"></div></div><div class="field">Email<input placeholder="you@email.com"></div>`,
+    `<div class="frow"><div class="field">Child's name<input placeholder="First & last"></div><div class="field">Birthday<input type="date"></div></div><div class="field">Allergies or notes<textarea rows="3" placeholder="Anything we should know?"></textarea></div><div class="field">Emergency pickup code<input placeholder="Create a 4-digit code"></div>`,
+    `<div class="field"><label style="display:flex;gap:10px;font-weight:700;line-height:1.4"><input type="checkbox" style="width:22px;height:22px;accent-color:var(--red)"> I agree to the Mandeville Sports Complex waiver and policies.</label></div><div class="field">Sign with your finger or mouse<canvas id="sig" height="120" style="width:100%;border:2px dashed var(--ink);border-radius:12px;background:var(--cream);touch-action:none"></canvas></div>`
+  ];
+  const draw=()=>{
+    if(step>=total){mc.innerHTML=`<div class="success"><div class="em">🎉</div><h3 style="margin-top:10px">All set!</h3><p style="font-weight:700;margin:8px 0 20px">Submitted straight to the front desk. A confirmation is headed to your inbox.</p><button class="btn red" id="mclose">Done</button></div>`;document.getElementById('mclose').onclick=()=>modal.classList.remove('on');return}
+    mc.innerHTML=`<h3>${t}</h3><p style="font-weight:700;color:var(--muted)">${s}</p><div class="steps">${Array.from({length:total},(_,i)=>`<i class="${i<=step?'on':''}"></i>`).join('')}</div>${k==='notify'?screens[0]:screens[step]}<div class="mfoot"><button class="btn white" id="mback">${step?'← Back':'Cancel'}</button><button class="btn red" id="mnext">${step===total-1?'Submit':'Next →'}</button></div>`;
+    document.getElementById('mback').onclick=()=>{if(step){step--;draw()}else modal.classList.remove('on')};
+    document.getElementById('mnext').onclick=()=>{step++;draw()};
+    const c=document.getElementById('sig');if(c){c.width=c.offsetWidth;const x=c.getContext('2d');x.lineWidth=3;x.lineCap='round';x.strokeStyle='#231F20';let dn=false;const pos=e=>{const r=c.getBoundingClientRect();return[e.clientX-r.left,e.clientY-r.top]};c.onpointerdown=e=>{dn=true;x.beginPath();x.moveTo(...pos(e))};c.onpointermove=e=>{if(dn){x.lineTo(...pos(e));x.stroke()}};c.onpointerup=()=>dn=false}
+  };
+  draw();modal.classList.add('on');
+}
+modal.onclick=e=>{if(e.target===modal)modal.classList.remove('on')};
+
+/* ================= HELPER BOT ================= */
+const helper=document.getElementById('helper'),msgs=document.getElementById('msgs'),quick=document.getElementById('quick');
+const qa={
+  'Are you open right now?':()=>document.getElementById('openTxt').textContent+'. Gym hours: Mon–Thu 5a–9p, Fri 5a–7p, Sat 8a–7p, Sun 9a–7p.',
+  'How much is a party?':()=>'Parties start at $375 for up to 20 kids, with pizza, cake, ice cream and 2 hosts included. Try the party builder for an exact price! 🎉',
+  'Thanksgiving camp?':()=>'Yes! Holiday Camp runs Nov 23–25, 9 AM–3 PM for ages 5–13, $35/day. Want to pick your days?',
+  'Do you take SilverSneakers?':()=>'We do! We also accept Renew Active, Silver&Fit, Active&Fit, Peoples Health and more.',
+  'Which schools do you pick up from?':()=>'Buses: Magnolia Trace, Gayle Sloan, Marigny. MSC vans: Woodlake, Lake Harbor Middle, Mandeville Elementary.'
+};
+quick.innerHTML=Object.keys(qa).map(q=>`<button>${q}</button>`).join('');
+quick.onclick=e=>{const b=e.target.closest('button');if(!b)return;msgs.insertAdjacentHTML('beforeend',`<div class="bub me">${b.textContent}</div>`);const typing=document.createElement('div');typing.className='bub';typing.textContent='…';msgs.appendChild(typing);msgs.scrollTop=1e5;setTimeout(()=>{typing.textContent=qa[b.textContent]();msgs.scrollTop=1e5},650)};
+document.getElementById('fab').onclick=()=>helper.classList.toggle('open');
+
+/* boot */
+go((location.hash||'#home').slice(1) in pages?(location.hash||'#home').slice(1):'home');
+</script>
+</body>
+</html>
